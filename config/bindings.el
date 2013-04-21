@@ -1,5 +1,8 @@
 ;; Place your bindings here.
 
+;; I almost always want to indent when going to the next line
+(global-set-key (kbd "RET") 'newline-and-indent)
+
 (global-set-key (kbd "C-c f") 'find-file-in-project)
 
 ;; To show/hide block of code

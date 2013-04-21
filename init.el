@@ -1,10 +1,25 @@
-(install-packs '(;; to make some awesome stuff on multiple line in one time
+(install-packs '(exec-path-from-shell
+                 ;; to make some awesome stuff on multiple line in one time
                  multiple-cursors
                  ;; move
                  move-text))
 
-;; I almost always want to indent when going to the next line
-(global-set-key (kbd "RET") 'newline-and-indent)
+;; setup the path
+(require 'exec-path-from-shell)
+(exec-path-from-shell-initialize)
+
+;; some text/font/color tweaks
+
+(setq-default fill-column 120)
+(set-face-background 'default "black")
+
+(set-language-environment "UTF-8")
+(blink-cursor-mode 1)
+
+;; C-x C-l to lower case ; C-x C-u to upper case
+
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
 
 ;; keep the default font but globally set the size
 (set-face-attribute 'default nil :height 80)
