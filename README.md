@@ -1,6 +1,7 @@
-# buffer-pack
+buffer-pack
+===========
 
-A pack to move around quickly in buffers
+A pack to move around quickly in buffers.
 
 # install
 
