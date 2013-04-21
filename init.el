@@ -1,3 +1,8 @@
+(install-packs '(;; to make some awesome stuff on multiple line in one time
+                 multiple-cursors
+                 ;; move
+                 move-text))
+
 ;; I almost always want to indent when going to the next line
 (global-set-key (kbd "RET") 'newline-and-indent)
 
