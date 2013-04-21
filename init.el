@@ -194,5 +194,18 @@ If it doesn't exist, launch it. Then go to this buffer in another buffer."
            (insert "~/")
          (call-interactively 'self-insert-command))))))
 
+;; Must-have setup for Emacs to operate like a modern application.
+(setq
+ ;; Do not show a splash screen.
+ inhibit-splash-screen t
+ ;; Show incomplete commands while typing them.
+ echo-keystrokes 0.1
+ ;; Flash the screen on errors.
+ visible-bell t
+ column-number-mode t)
+
+;; Allow us to type "y" or "n" instead of "yes" or "no".
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 ;; Load bindings config
 (live-load-config-file "bindings.el")
