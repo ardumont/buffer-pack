@@ -7,5 +7,5 @@ A pack to move around quickly in buffers.
 
 In your `.emacs-live.el` add this snippet:
 ```elisp
-(live-add-packs '(buffer-pack))
+(live-add-packs '("/path/to/buffer-pack"))
 ```
