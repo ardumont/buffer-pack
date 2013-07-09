@@ -5,12 +5,6 @@
 
 (global-set-key (kbd "C-c f") 'find-file-in-project)
 
-;; To show/hide block of code
-(require 'fold-dwim)
-(global-set-key (kbd "C-c j") 'fold-dwim-toggle)
-(global-set-key (kbd "C-c l") 'fold-dwim-hide-all)
-(global-set-key (kbd "C-c ;") 'fold-dwim-show-all)
-
 (global-set-key [remap find-tag] 'ido-find-tag)
 (global-set-key (kbd "C-.") 'ido-find-file-in-tag-files)
 
