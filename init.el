@@ -4,8 +4,10 @@
                  ;; to make some awesome stuff on multiple line in one time
                  multiple-cursors
                  move-text
-                 auto-complete))
+                 auto-complete
+                 git-gutter))
 
+(require 'git-gutter)
 (require 'auto-complete)
 
 ;; setup the path
@@ -143,14 +145,18 @@ instead."
             word)
         (error "No symbol found")))))
 
-;; (defun goto-line-with-feedback ()
-;;   "Show line numbers temporarily, while prompting for the line number input"
-;;   (interactive)
-;;   (unwind-protect
-;;       (progn
-;;         (linum-mode 1)
-;;         (goto-line (read-number "Goto line: ")))
-;;     (linum-mode -1)))
+(defun goto-line-with-feedback ()
+  "Show line numbers temporarily, while prompting for the line number input"
+  (interactive)
+  (let ((git-gutter-activated-p git-gutter-mode))
+    (unwind-protect
+        (progn
+          (if git-gutter-activated-p (git-gutter-mode 0))
+          (linum-mode 1)
+          (goto-line (read-number "Goto line: ")))
+      (progn
+        (linum-mode -1)
+        (if git-gutter-activated-p (git-gutter-mode 1))))))
 
 ;; Auto refresh buffers (not active by default)
 ;;(global-auto-revert-mode 1)
