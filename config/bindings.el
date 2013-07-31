@@ -11,7 +11,7 @@
 (global-set-key (kbd "M-n") 'smart-symbol-go-forward)
 (global-set-key (kbd "M-p") 'smart-symbol-go-backward)
 
-(global-set-key (kbd "M-/") 'complete-symbol)
+(global-set-key (kbd "M-/") 'auto-complete)
 
 ;; multiple-cursors
 (require 'multiple-cursors)

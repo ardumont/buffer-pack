@@ -3,8 +3,10 @@
                  fold-dwim
                  ;; to make some awesome stuff on multiple line in one time
                  multiple-cursors
-                 ;; move
-                 move-text))
+                 move-text
+                 auto-complete))
+
+(require 'auto-complete)
 
 ;; setup the path
 (require 'exec-path-from-shell)
