@@ -12,6 +12,9 @@
 (global-set-key (kbd "M-p") 'smart-symbol-go-backward)
 
 (global-set-key (kbd "M-/") 'auto-complete)
+(global-set-key (kbd "M-h") 'backward-kill-word)
+(global-set-key (kbd "M-?") 'help-command)
+
 
 ;; multiple-cursors
 (require 'multiple-cursors)
