@@ -32,7 +32,7 @@
 (put 'upcase-region 'disabled nil)
 
 ;; keep the default font but globally set the size
-(set-face-attribute 'default nil :height 120)
+(set-face-attribute 'default nil :height 100)
 
 ;; Find file in project
 
