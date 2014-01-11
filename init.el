@@ -5,10 +5,14 @@
                  multiple-cursors
                  move-text
                  auto-complete
-                 git-gutter))
+                 git-gutter
+                 projectile))
 
 (require 'git-gutter)
 (require 'auto-complete)
+
+(require 'projectile)
+(projectile-global-mode)
 
 ;; setup the path
 (require 'exec-path-from-shell)
