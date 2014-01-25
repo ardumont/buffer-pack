@@ -44,18 +44,6 @@
   ;; keep the default font but globally set the size
   (set-face-attribute 'default nil :height font-size))
 
-;; Find file in project
-
-(eval-after-load 'find-file-in-project
-  '(progn
-     ;; add 'entreprise' files patterns (cough!)
-     (setq ffip-patterns
-           (append ffip-patterns
-                   '("*.java" "*.properties" "*.xml" "*.clj*")))
-     ;; increase the max number of files, otherwise some files will be
-     ;; 'unfindable' on big projects
-     (setq ffip-limit 8192)))
-;; "*.cs*""*.htm*" "*.js*" "*.php" "*.sql"
 ;; etags
 
 (require 'etags)
