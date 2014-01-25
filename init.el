@@ -6,7 +6,9 @@
                  move-text
                  auto-complete
                  git-gutter
-                 projectile))
+                 projectile
+                 s
+                 dash))
 
 (require 'git-gutter)
 (require 'auto-complete)
@@ -31,8 +33,16 @@
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
-;; keep the default font but globally set the size
-(set-face-attribute 'default nil :height 100)
+(require 'shell)
+(require 's)
+(require 'dash)
+
+(defun buffer-pack/hostname! () "Return the hostname of the current computer." (-> "hostname" shell-command-to-string s-trim))
+
+(let* ((hostname  (buffer-pack/hostname!))
+       (font-size (if (string= hostname "dagobah") 140 100)))
+  ;; keep the default font but globally set the size
+  (set-face-attribute 'default nil :height font-size))
 
 ;; Find file in project
 
