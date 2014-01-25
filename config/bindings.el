@@ -3,11 +3,6 @@
 ;; I almost always want to indent when going to the next line
 (global-set-key (kbd "RET") 'newline-and-indent)
 
-(global-set-key (kbd "C-c f") 'find-file-in-project)
-
-(global-set-key [remap find-tag] 'ido-find-tag)
-(global-set-key (kbd "C-.") 'ido-find-file-in-tag-files)
-
 (global-set-key (kbd "M-n") 'smart-symbol-go-forward)
 (global-set-key (kbd "M-p") 'smart-symbol-go-backward)
 
