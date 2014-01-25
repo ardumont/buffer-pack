@@ -17,7 +17,6 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
-;;
 (global-set-key [remap goto-line] 'goto-line-with-feedback)
 
 (global-set-key (kbd "C-x f") 'ido-recentf-open)

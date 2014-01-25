@@ -192,13 +192,11 @@ If it doesn't exist, launch it. Then go to this buffer in another buffer."
 (add-hook 'ido-setup-hook
  (lambda ()
    ;; Go straight home
-   (define-key ido-file-completion-map
-     (kbd "~")
-     (lambda ()
-       (interactive)
-       (if (looking-back "/")
-           (insert "~/")
-         (call-interactively 'self-insert-command))))))
+   (define-key ido-file-completion-map (kbd "~") (lambda ()
+                                                   (interactive)
+                                                   (if (looking-back "/")
+                                                       (insert "~/")
+                                                       (call-interactively 'self-insert-command))))))
 
 ;; Must-have setup for Emacs to operate like a modern application.
 (setq
