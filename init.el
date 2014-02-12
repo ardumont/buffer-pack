@@ -196,7 +196,7 @@ If it doesn't exist, launch it. Then go to this buffer in another buffer."
                                                    (interactive)
                                                    (if (looking-back "/")
                                                        (insert "~/")
-                                                       (call-interactively 'self-insert-command))))))
+                                                       (call-interactively 'self-insert-command))))))
 
 ;; Must-have setup for Emacs to operate like a modern application.
 (setq
