@@ -211,5 +211,3 @@ If it doesn't exist, launch it. Then go to this buffer in another buffer."
 ;; Allow us to type "y" or "n" instead of "yes" or "no".
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-;; Load bindings config
-(live-load-config-file "bindings.el")
