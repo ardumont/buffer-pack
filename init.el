@@ -214,9 +214,6 @@ If it doesn't exist, launch it. Then go to this buffer in another buffer."
 
 (defvar buffer-pack-mode-map
   (let ((map (make-sparse-keymap)))
-    ;; I almost always want to indent when going to the next line
-    (define-key map (kbd "RET") 'newline-and-indent)
-
     (define-key map (kbd "M-n") 'smart-symbol-go-forward)
     (define-key map (kbd "M-p") 'smart-symbol-go-backward)
 
