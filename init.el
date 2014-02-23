@@ -10,6 +10,7 @@
                  s
                  dash))
 
+(require 'multiple-cursors)
 (require 'git-gutter)
 (require 'auto-complete)
 
