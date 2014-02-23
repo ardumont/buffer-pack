@@ -270,3 +270,5 @@ If it doesn't exist, launch it. Then go to this buffer in another buffer."
 (defun buffer-pack-on ()
   "Turn on `buffer-pack-mode'."
   (buffer-pack-mode +1))
+
+(buffer-pack-global-mode)
