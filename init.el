@@ -209,6 +209,6 @@ If it doesn't exist, launch it. Then go to this buffer in another buffer."
  visible-bell t
  column-number-mode t)
 
-;; Allow us to type "y" or "n" instead of "yes" or "no".
+;; "y" resp. "n" instead of "yes" resp. "no".
 (defalias 'yes-or-no-p 'y-or-n-p)
 
