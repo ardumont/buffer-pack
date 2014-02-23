@@ -233,7 +233,7 @@ If it doesn't exist, launch it. Then go to this buffer in another buffer."
 
     (define-key map (kbd "M-/") 'complete-symbol)
 
-    (define-key map (kbd "C-c r") 'revert-buffer)
+    (define-key map (kbd "C-c r r") 'revert-buffer)
 
     map)
   "Keymap for Buffer-pack mode.")
