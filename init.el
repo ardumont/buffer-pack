@@ -212,3 +212,64 @@ If it doesn't exist, launch it. Then go to this buffer in another buffer."
 ;; "y" resp. "n" instead of "yes" resp. "no".
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+(defvar buffer-pack-mode-map
+  (let ((map (make-sparse-keymap)))
+    ;; I almost always want to indent when going to the next line
+    (define-key map (kbd "RET") 'newline-and-indent)
+
+    (define-key map (kbd "M-n") 'smart-symbol-go-forward)
+    (define-key map (kbd "M-p") 'smart-symbol-go-backward)
+
+    (define-key map (kbd "M-/") 'auto-complete)
+    (define-key map (kbd "M-h") 'backward-kill-word)
+    (define-key map (kbd "M-?") 'help-command)
+
+    ;; multiple-cursors
+    (define-key map (kbd "C->") 'mc/mark-next-like-this)
+    (define-key map (kbd "C-<") 'mc/mark-previous-like-this)
+    (define-key map (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+    (define-key map [remap goto-line] 'goto-line-with-feedback)
+
+    (define-key map (kbd "C-x f") 'ido-recentf-open)
+    (define-key map (kbd "C-x C-r") 'rgrep)
+
+    (define-key map (kbd "C-c C-r") 'rename-current-buffer-file)
+
+    (define-key map (kbd "C-c C-z") 'multi-term-once)
+
+    (define-key global-map (kbd "C-+") 'text-scale-increase)
+    (define-key global-map (kbd "C--") 'text-scale-decrease)
+
+    ;; make C-w to cut (even in paredit-mode)
+    (define-key map (kbd "C-w") 'kill-region)
+
+    ;; yank
+    (define-key map (kbd "C-y") 'yank)
+
+    (define-key map (kbd "C-v") (lambda () (interactive) (next-line 10)))
+    (define-key map (kbd "M-v") (lambda () (interactive) (previous-line 10)))
+
+    ;; some multi term tweaks
+    (define-key map (kbd "C-c C-j") 'term-line-mode)
+
+    (define-key map (kbd "M-/") 'complete-symbol)
+
+    (define-key map (kbd "C-c r") 'revert-buffer)
+    (define-key map (kbd "C-c R") 'rename-current-buffer-file)
+
+    map)
+  "Keymap for Buffer-pack mode.")
+
+(define-minor-mode buffer-pack-mode
+  "Minor mode to consolidate Emacs' buffer-pack extensions.
+
+\\{buffer-pack-mode-map}"
+  :lighter " BP"
+  :keymap buffer-pack-mode-map)
+
+(define-globalized-minor-mode buffer-pack-global-mode buffer-pack-mode buffer-pack-on)
+
+(defun buffer-pack-on ()
+  "Turn on `buffer-pack-mode'."
+  (buffer-pack-mode +1))
