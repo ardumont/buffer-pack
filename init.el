@@ -147,23 +147,6 @@ instead."
 (setq global-auto-revert-non-file-buffers t)
 (setq auto-revert-verbose nil)
 
-(defun rename-current-buffer-file ()
-  "Renames current buffer and file it is visiting."
-  (interactive)
-  (let ((name (buffer-name))
-        (filename (buffer-file-name)))
-    (if (not (and filename (file-exists-p filename)))
-        (error "Buffer '%s' is not visiting a file!" name)
-      (let ((new-name (read-file-name "New name: " filename)))
-        (if (get-buffer new-name)
-            (error "A buffer named '%s' already exists!" new-name)
-          (rename-file filename new-name 1)
-          (rename-buffer new-name)
-          (set-visited-file-name new-name)
-          (set-buffer-modified-p nil)
-          (message "File '%s' successfully renamed to '%s'"
-                   name (file-name-nondirectory new-name)))))))
-
 ;; some personal functions that extends the one loaded from user.el
 
 (defun exists-session-or-spawn-it (session-name session-command)
@@ -231,8 +214,6 @@ If it doesn't exist, launch it. Then go to this buffer in another buffer."
     (define-key map (kbd "C-x f") 'ido-recentf-open)
     (define-key map (kbd "C-x C-r") 'rgrep)
 
-    (define-key map (kbd "C-c C-r") 'rename-current-buffer-file)
-
     (define-key map (kbd "C-c C-z") 'multi-term-once)
 
     (define-key global-map (kbd "C-+") 'text-scale-increase)
@@ -253,7 +234,6 @@ If it doesn't exist, launch it. Then go to this buffer in another buffer."
     (define-key map (kbd "M-/") 'complete-symbol)
 
     (define-key map (kbd "C-c r") 'revert-buffer)
-    (define-key map (kbd "C-c R") 'rename-current-buffer-file)
 
     map)
   "Keymap for Buffer-pack mode.")
