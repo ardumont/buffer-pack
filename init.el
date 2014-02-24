@@ -218,10 +218,7 @@ If it doesn't exist, launch it. Then go to this buffer in another buffer."
     (define-key global-map (kbd "C-+") 'text-scale-increase)
     (define-key global-map (kbd "C--") 'text-scale-decrease)
 
-    ;; make C-w to cut (even in paredit-mode)
     (define-key map (kbd "C-w") 'kill-region)
-
-    ;; yank
     (define-key map (kbd "C-y") 'yank)
 
     (define-key map (kbd "C-v") (lambda () (interactive) (next-line 10)))
