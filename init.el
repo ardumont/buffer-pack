@@ -201,7 +201,7 @@ If it doesn't exist, launch it. Then go to this buffer in another buffer."
     (define-key map (kbd "M-p") 'smart-symbol-go-backward)
 
     (define-key map (kbd "M-/") 'auto-complete)
-    (define-key map (kbd "M-h") 'backward-kill-word)
+    (define-key map (kbd "C-M-h") 'backward-kill-word)
     (define-key map (kbd "M-?") 'help-command)
 
     ;; multiple-cursors
