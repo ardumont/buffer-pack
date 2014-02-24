@@ -211,7 +211,6 @@ If it doesn't exist, launch it. Then go to this buffer in another buffer."
 
     (define-key map [remap goto-line] 'goto-line-with-feedback)
 
-    (define-key map (kbd "C-x f") 'ido-recentf-open)
     (define-key map (kbd "C-x C-r") 'rgrep)
 
     (define-key map (kbd "C-c C-z") 'multi-term-once)
