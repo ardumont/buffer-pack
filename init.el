@@ -147,32 +147,6 @@ instead."
 (setq global-auto-revert-non-file-buffers t)
 (setq auto-revert-verbose nil)
 
-;; some personal functions that extends the one loaded from user.el
-
-(defun exists-session-or-spawn-it (session-name session-command)
-  "Given a session-name, check the existence of such a session. If it doesn't exist, spawn the session via the command session-command"
-  (let ((proc (get-buffer-process session-name)))
-    (unless (and proc (eq (process-status proc) 'run))
-      (funcall session-command))))
-
-(defun switch-to-buffer-or-nothing (process-name buffer-name)
-  "Given a process name, switch to the corresponding buffer-name (if the process is running) or does nothing."
-  (unless (string= (buffer-name) buffer-name)
-    (let ((proc (get-buffer-process process-name)))
-      (if (and proc (eq (process-status proc) 'run))
-          (switch-to-buffer buffer-name)))))
-
-;; examples
-;; (switch-to-buffer-or-nothing "*swank*" "*slime-repl nil*")    ;; clojure-jack-in
-;; (switch-to-buffer-or-nothing "*terminal<1>*" "*terminal<1>*") ;; multi-term
-
-(defun multi-term-once ()
-  "Check the existence of a terminal with multi-term.
-If it doesn't exist, launch it. Then go to this buffer in another buffer."
-  (interactive)
-  (unless (exists-session-or-spawn-it "*terminal<1>*" 'multi-term)
-    (switch-to-buffer-or-nothing "*terminal<1>*" "*terminal<1>*")))
-
 (add-hook 'ido-setup-hook
  (lambda ()
    ;; Go straight home
@@ -212,8 +186,6 @@ If it doesn't exist, launch it. Then go to this buffer in another buffer."
     (define-key map [remap goto-line] 'goto-line-with-feedback)
 
     (define-key map (kbd "C-x C-r") 'rgrep)
-
-    (define-key map (kbd "C-c C-z") 'multi-term-once)
 
     (define-key global-map (kbd "C-+") 'text-scale-increase)
     (define-key global-map (kbd "C--") 'text-scale-decrease)
