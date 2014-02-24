@@ -224,9 +224,6 @@ If it doesn't exist, launch it. Then go to this buffer in another buffer."
     (define-key map (kbd "C-v") (lambda () (interactive) (next-line 10)))
     (define-key map (kbd "M-v") (lambda () (interactive) (previous-line 10)))
 
-    ;; some multi term tweaks
-    (define-key map (kbd "C-c C-j") 'term-line-mode)
-
     (define-key map (kbd "M-/") 'complete-symbol)
 
     (define-key map (kbd "C-c r r") 'revert-buffer)
