@@ -196,7 +196,7 @@ instead."
     (define-key map (kbd "C-v") (lambda () (interactive) (next-line 10)))
     (define-key map (kbd "M-v") (lambda () (interactive) (previous-line 10)))
 
-    (define-key map (kbd "C-c r r") 'revert-buffer)
+    (define-key map (kbd "C-c r r") (lambda () (interactive) (revert-buffer nil t)))
 
     map)
   "Keymap for Buffer-pack mode.")
