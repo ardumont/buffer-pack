@@ -29,8 +29,6 @@
 (set-language-environment "UTF-8")
 (blink-cursor-mode 1)
 
-;; C-x C-l to lower case ; C-x C-u to upper case
-
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
