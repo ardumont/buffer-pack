@@ -171,8 +171,8 @@ instead."
 
 (defvar buffer-pack-mode-map
   (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "M-n") 'smart-symbol-go-forward)
-    (define-key map (kbd "M-p") 'smart-symbol-go-backward)
+    ;; (define-key map (kbd "M-n") 'smart-symbol-go-forward)
+    ;; (define-key map (kbd "M-p") 'smart-symbol-go-backward)
 
     (define-key map (kbd "M-/") 'auto-complete)
     (define-key map (kbd "C-M-h") 'backward-kill-word)
