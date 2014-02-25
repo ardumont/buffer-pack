@@ -215,3 +215,7 @@ instead."
   (buffer-pack-mode +1))
 
 (buffer-pack-global-mode)
+
+;; to access the minibuffer's local map
+;; (define-key minibuffer-local-map (kbd "M-p") 'previous-history-element)
+;; (define-key minibuffer-local-map (kbd "M-n") 'next-history-element)
