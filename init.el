@@ -154,15 +154,11 @@ instead."
                                                        (insert "~/")
                                                        (call-interactively 'self-insert-command))))))
 
-;; Must-have setup for Emacs to operate like a modern application.
 (setq
- ;; Do not show a splash screen.
- inhibit-splash-screen t
- ;; Show incomplete commands while typing them.
- echo-keystrokes 0.1
- ;; Flash the screen on errors.
- visible-bell t
- column-number-mode t)
+  inhibit-splash-screen t ;; Do not show a splash screen.
+   echo-keystrokes 0.1    ;; Show incomplete commands while typing them.
+   visible-bell t         ;; Flash the screen on errors.
+   column-number-mode t)  ;; column number in the modeline
 
 ;; "y" resp. "n" instead of "yes" resp. "no".
 (defalias 'yes-or-no-p 'y-or-n-p)
