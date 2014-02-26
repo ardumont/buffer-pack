@@ -38,12 +38,10 @@
 
 (defun buffer-pack/hostname! () "Return the hostname of the current computer." (-> "hostname" shell-command-to-string s-trim))
 
+;; Depending on the hostname, will set a font or another
 (let* ((hostname  (buffer-pack/hostname!))
        (font-size (if (string= hostname "dagobah") 140 100)))
-  ;; keep the default font but globally set the size
   (set-face-attribute 'default nil :height font-size))
-
-;; etags
 
 (require 'etags)
 
