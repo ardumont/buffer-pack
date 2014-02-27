@@ -130,13 +130,13 @@
   :lighter " BP"
   :keymap buffer-pack-mode-map)
 
-(define-globalized-minor-mode buffer-pack-global-mode buffer-pack-mode buffer-pack-on)
+(define-globalized-minor-mode global-buffer-pack-mode buffer-pack-mode buffer-pack-on)
 
 (defun buffer-pack-on ()
   "Turn on `buffer-pack-mode'."
   (buffer-pack-mode +1))
 
-(buffer-pack-global-mode)
+(global-buffer-pack-mode)
 
 ;; to access the minibuffer's local map
 ;; (define-key minibuffer-local-map (kbd "M-p") 'previous-history-element)
