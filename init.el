@@ -14,11 +14,13 @@
                  s
                  dash
                  smartscan
-                 ace-jump-mode))
+                 ace-jump-mode
+                 buffer-move))
 
 (require 'multiple-cursors)
 (require 'git-gutter)
 (require 'auto-complete)
+(require 'buffer-move)
 
 (require 'projectile)
 (projectile-global-mode)
