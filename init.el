@@ -5,9 +5,7 @@
 ;;; Code:
 
 (install-packs '(exec-path-from-shell
-                 ;; manipulate folding sexp
                  fold-dwim
-                 ;; to make some awesome stuff on multiple line in one time
                  multiple-cursors
                  move-text
                  auto-complete
