@@ -119,6 +119,7 @@
 (defvar buffer-pack-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "M-/") 'auto-complete)
+    (define-key map (kbd "C-h") 'delete-backward-char)
     (define-key map (kbd "C-M-h") 'backward-kill-word)
     (define-key map (kbd "M-?") 'help-command)
 
@@ -181,9 +182,6 @@
   (buffer-pack-mode +1))
 
 (global-buffer-pack-mode)
-
-;;make ^h delete rather than help
-(global-set-key (kbd "C-h") 'delete-backward-char)
 
 ;; Override some default mapping to the minibuffer
 ;; (add-hook 'minibuffer-setup-hook (lambda ()
