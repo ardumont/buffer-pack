@@ -65,7 +65,10 @@
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
-(require 'shell)
+(require 'dired)
+(add-hook 'dired-mode-hook
+          (define-key dired-mode-map (kbd "q") (lambda () (interactive) (quit-window t))))
+
 (require 's)
 (require 'dash)
 
