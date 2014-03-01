@@ -191,7 +191,6 @@
 ;; (global-set-key (kbd "C-c d f") 'diff-buffer-with-file)
 
 ;;window and buffer movement
-;;(global-set-key (kbd "C-c w s") 'swap-windows)
 (global-set-key (kbd "C-c w r") 'rotate-windows)
 (global-set-key (kbd "C-c w p") 'buf-move-up)
 (global-set-key (kbd "C-c w n") 'buf-move-down)
