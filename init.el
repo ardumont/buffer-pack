@@ -152,7 +152,7 @@
     (define-key map (kbd "C-M-[") 'scroll-other-window-down)
 
     ;; Align your code in a pretty way.
-    (define-key map-key (kbd "C-x \\") 'align-regexp)
+    (define-key map (kbd "C-x \\") 'align-regexp)
 
     ;; Window switching.
     (define-key map (kbd "C-x O") (lambda () (interactive) (other-window -1))) ;; back one
