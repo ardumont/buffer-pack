@@ -147,7 +147,6 @@
 
 ;;redefine help shortcut
 (global-set-key (kbd "M-?") 'help-command)
-(define-key org-mode-map (kbd "M-?") 'help-command)
 
 ;;scroll other window
 (global-set-key (kbd "C-M-]") 'scroll-other-window)
@@ -179,4 +178,5 @@
 (global-set-key (kbd "C-c w ,") 'enlarge-window-horizontally)
 (global-set-key (kbd "C-c w /") (lambda () (interactive) (enlarge-window -1)))
 (global-set-key (kbd "C-c w '") (lambda () (interactive) (enlarge-window 1)))
+
 ;;; buffer-pack.el ends here
