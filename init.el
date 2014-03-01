@@ -101,8 +101,7 @@
 (setq auto-revert-verbose nil)
 
 (add-hook 'ido-setup-hook
- (lambda ()
-   ;; Go straight home
+ (lambda () ;; ~ to go straight home, // to go in /
    (define-key ido-file-completion-map (kbd "~") (lambda ()
                                                    (interactive)
                                                    (if (looking-back "/")
@@ -115,8 +114,7 @@
    visible-bell t         ;; Flash the screen on errors.
    column-number-mode t)  ;; column number in the modeline
 
-;; "y" resp. "n" instead of "yes" resp. "no".
-(defalias 'yes-or-no-p 'y-or-n-p)
+(defalias 'yes-or-no-p 'y-or-n-p) ;; "y" resp. "n" instead of "yes" resp. "no".
 
 (defvar buffer-pack-mode-map
   (let ((map (make-sparse-keymap)))
