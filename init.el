@@ -14,13 +14,8 @@
                  git-gutter
                  projectile
                  s
-                 dash))
-
-(setq *TEMPORARY-PACKAGE-ARCHIVES* package-archives)
-
-(install-packs
- '(smartscan)
- (add-to-list '*TEMPORARY-PACKAGE-ARCHIVES* '("melpa" . "http://melpa.milkbox.net/packages/") t))
+                 dash
+                 smartscan))
 
 (require 'multiple-cursors)
 (require 'git-gutter)
