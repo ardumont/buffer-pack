@@ -118,9 +118,6 @@
 
 (defvar buffer-pack-mode-map
   (let ((map (make-sparse-keymap)))
-    ;; (define-key map (kbd "M-n") 'smart-symbol-go-forward)
-    ;; (define-key map (kbd "M-p") 'smart-symbol-go-backward)
-
     (define-key map (kbd "M-/") 'auto-complete)
     (define-key map (kbd "C-M-h") 'backward-kill-word)
     (define-key map (kbd "M-?") 'help-command)
@@ -192,8 +189,5 @@
 ;; (add-hook 'minibuffer-setup-hook (lambda ()
 ;;                                    (define-key minibuffer-local-map (kbd "C-h") 'backward-kill-char)
 ;;                                    (define-key minibuffer-local-map (kbd "C-M-h") 'backward-kill-word)))
-
-;;diff shortcuts
-;; (global-set-key (kbd "C-c d f") 'diff-buffer-with-file)
 
 ;;; buffer-pack.el ends here
