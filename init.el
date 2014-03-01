@@ -1,3 +1,9 @@
+;;; buffer-pack.el --- Buffer manipulation
+
+;;; Commentary:
+
+;;; Code:
+
 (install-packs '(exec-path-from-shell
                  ;; manipulate folding sexp
                  fold-dwim
@@ -142,3 +148,5 @@
 ;; (add-hook 'minibuffer-setup-hook (lambda ()
 ;;                                    (define-key minibuffer-local-map (kbd "C-h") 'backward-kill-char)
 ;;                                    (define-key minibuffer-local-map (kbd "C-M-h") 'backward-kill-word)))
+
+;;; buffer-pack.el ends here
