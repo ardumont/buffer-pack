@@ -13,7 +13,8 @@
                  projectile
                  s
                  dash
-                 smartscan))
+                 smartscan
+                 ace-jump-mode))
 
 (require 'multiple-cursors)
 (require 'git-gutter)
@@ -21,6 +22,10 @@
 
 (require 'projectile)
 (projectile-global-mode)
+
+;; Ace jump mode
+(require 'ace-jump-mode)
+(global-set-key (kbd "C-o") 'ace-jump-mode)
 
 ;; setup the path
 (require 'exec-path-from-shell)
