@@ -147,6 +147,28 @@
 
     (define-key map (kbd "C-c r r") (lambda () (interactive) (revert-buffer nil t)))
 
+    ;;scroll other window
+    (define-key map (kbd "C-M-]") 'scroll-other-window)
+    (define-key map (kbd "C-M-[") 'scroll-other-window-down)
+
+    ;; Align your code in a pretty way.
+    (define-key map-key (kbd "C-x \\") 'align-regexp)
+
+    ;; Window switching.
+    (define-key map (kbd "C-x O") (lambda () (interactive) (other-window -1))) ;; back one
+    (define-key map (kbd "C-x C-o") (lambda () (interactive) (other-window 2))) ;; forward two
+
+    ;;window and buffer movement
+    (define-key map (kbd "C-c w r") 'rotate-windows)
+    (define-key map (kbd "C-c w p") 'buf-move-up)
+    (define-key map (kbd "C-c w n") 'buf-move-down)
+    (define-key map (kbd "C-c w b") 'buf-move-left)
+    (define-key map (kbd "C-c w f") 'buf-move-right)
+    (define-key map (kbd "C-c w .") 'shrink-window-horizontally)
+    (define-key map (kbd "C-c w ,") 'enlarge-window-horizontally)
+    (define-key map (kbd "C-c w /") (lambda () (interactive) (enlarge-window -1)))
+    (define-key map (kbd "C-c w '") (lambda () (interactive) (enlarge-window 1)))
+
     map)
   "Keymap for Buffer-pack mode.")
 
@@ -168,20 +190,6 @@
 ;;make ^h delete rather than help
 (global-set-key (kbd "C-h") 'delete-backward-char)
 
-;;redefine help shortcut
-(global-set-key (kbd "M-?") 'help-command)
-
-;;scroll other window
-(global-set-key (kbd "C-M-]") 'scroll-other-window)
-(global-set-key (kbd "C-M-[") 'scroll-other-window-down)
-
-;; Align your code in a pretty way.
-(global-set-key (kbd "C-x \\") 'align-regexp)
-
-;; Window switching.
-(global-set-key (kbd "C-x O") (lambda () (interactive) (other-window -1))) ;; back one
-(global-set-key (kbd "C-x C-o") (lambda () (interactive) (other-window 2))) ;; forward two
-
 ;; Override some default mapping to the minibuffer
 ;; (add-hook 'minibuffer-setup-hook (lambda ()
 ;;                                    (define-key minibuffer-local-map (kbd "C-h") 'backward-kill-char)
@@ -189,16 +197,5 @@
 
 ;;diff shortcuts
 ;; (global-set-key (kbd "C-c d f") 'diff-buffer-with-file)
-
-;;window and buffer movement
-(global-set-key (kbd "C-c w r") 'rotate-windows)
-(global-set-key (kbd "C-c w p") 'buf-move-up)
-(global-set-key (kbd "C-c w n") 'buf-move-down)
-(global-set-key (kbd "C-c w b") 'buf-move-left)
-(global-set-key (kbd "C-c w f") 'buf-move-right)
-(global-set-key (kbd "C-c w .") 'shrink-window-horizontally)
-(global-set-key (kbd "C-c w ,") 'enlarge-window-horizontally)
-(global-set-key (kbd "C-c w /") (lambda () (interactive) (enlarge-window -1)))
-(global-set-key (kbd "C-c w '") (lambda () (interactive) (enlarge-window 1)))
 
 ;;; buffer-pack.el ends here
