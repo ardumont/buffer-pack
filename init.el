@@ -136,8 +136,8 @@
 
     (define-key map (kbd "C-x C-r") 'rgrep)
 
-    (define-key global-map (kbd "C-+") 'text-scale-increase)
-    (define-key global-map (kbd "C--") 'text-scale-decrease)
+    (define-key map (kbd "C-+") 'text-scale-increase)
+    (define-key map (kbd "C--") 'text-scale-decrease)
 
     (define-key map (kbd "C-w") 'kill-region)
     (define-key map (kbd "C-y") 'yank)
