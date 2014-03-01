@@ -138,6 +138,7 @@
 
 (global-buffer-pack-mode)
 
-;; to access the minibuffer's local map
-;; (define-key minibuffer-local-map (kbd "M-p") 'previous-history-element)
-;; (define-key minibuffer-local-map (kbd "M-n") 'next-history-element)
+;; Override some default mapping to the minibuffer
+;; (add-hook 'minibuffer-setup-hook (lambda ()
+;;                                    (define-key minibuffer-local-map (kbd "C-h") 'backward-kill-char)
+;;                                    (define-key minibuffer-local-map (kbd "C-M-h") 'backward-kill-word)))
