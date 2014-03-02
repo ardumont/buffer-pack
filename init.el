@@ -14,7 +14,8 @@
                  dash
                  smartscan
                  ace-jump-mode
-                 buffer-move))
+                 buffer-move
+                 iy-go-to-char))
 
 (require 'multiple-cursors)
 (require 'git-gutter)
@@ -47,8 +48,9 @@
 
 ;; Ace jump mode
 (require 'ace-jump-mode)
-(global-set-key (kbd "C-o") 'ace-jump-mode)
 
+;; go to char
+(require 'iy-go-to-char)
 
 ;; some text/font/color tweaks
 
@@ -117,6 +119,10 @@
 
 (defvar buffer-pack-mode-map
   (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "C-o") 'ace-jump-mode)
+    (define-key map (kbd "C-c ;") 'iy-go-to-char)
+    (define-key map (kbd "C-c ,") 'iy-go-to-char-backward)
+
     (define-key map (kbd "M-/") 'auto-complete)
     (define-key map (kbd "C-h") 'delete-backward-char)
     (define-key map (kbd "C-M-h") 'backward-kill-word)
