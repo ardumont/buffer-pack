@@ -4,8 +4,7 @@
 
 ;;; Code:
 
-(install-packs '(exec-path-from-shell
-                 fold-dwim
+(install-packs '(fold-dwim
                  multiple-cursors
                  move-text
                  auto-complete
@@ -50,9 +49,6 @@
 (require 'ace-jump-mode)
 (global-set-key (kbd "C-o") 'ace-jump-mode)
 
-;; setup the path
-(require 'exec-path-from-shell)
-(exec-path-from-shell-initialize)
 
 ;; some text/font/color tweaks
 
