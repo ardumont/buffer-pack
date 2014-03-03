@@ -96,9 +96,9 @@
 
 (defvar buffer-pack-mode-map
   (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "C-o") 'ace-jump-mode)
-    (define-key map (kbd "C-c ;") 'iy-go-to-char)
-    (define-key map (kbd "C-c ,") 'iy-go-to-char-backward)
+    (define-key map (kbd "C-c j") 'ace-jump-mode)
+    (define-key map (kbd "C-c g f") 'iy-go-to-char)
+    (define-key map (kbd "C-c g b") 'iy-go-to-char-backward)
 
     (define-key map (kbd "M-/") 'auto-complete)
     (define-key map (kbd "C-h") 'delete-backward-char)
@@ -133,7 +133,7 @@
     (define-key map (kbd "C-x \\") 'align-regexp)
 
     ;; Window switching.
-    (define-key map (kbd "C-x O") (lambda () (interactive) (other-window -1))) ;; back one
+    (define-key map (kbd "C-x O") (lambda () (interactive) (other-window -1)))  ;; back one
     (define-key map (kbd "C-x C-o") (lambda () (interactive) (other-window 2))) ;; forward two
 
     ;;window and buffer movement
@@ -146,6 +146,8 @@
     (define-key map (kbd "C-c w ,") 'enlarge-window-horizontally)
     (define-key map (kbd "C-c w /") (lambda () (interactive) (enlarge-window -1)))
     (define-key map (kbd "C-c w '") (lambda () (interactive) (enlarge-window 1)))
+
+    (define-key map (kbd "C-c b u") 'browse-url-at-point)
 
     map)
   "Keymap for Buffer-pack mode.")
