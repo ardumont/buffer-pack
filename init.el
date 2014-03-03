@@ -4,8 +4,7 @@
 
 ;;; Code:
 
-(install-packs '(fold-dwim
-                 multiple-cursors
+(install-packs '(multiple-cursors
                  move-text
                  auto-complete
                  git-gutter
