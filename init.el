@@ -12,7 +12,6 @@
                  projectile
                  s
                  dash
-                 smartscan
                  ace-jump-mode
                  buffer-move
                  iy-go-to-char))
@@ -38,8 +37,6 @@
 (require 's)
 
 (require 'etags)
-(require 'smartscan)
-(global-smartscan-mode)
 
 (defun rotate-windows ()
   "Rotate your windows"
