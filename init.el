@@ -148,6 +148,7 @@
     (define-key map (kbd "C-c w '") (lambda () (interactive) (enlarge-window 1)))
 
     (define-key map (kbd "C-c b u") 'browse-url-at-point)
+    (define-key map (kbd "C-c b U") 'browse-url)
 
     map)
   "Keymap for Buffer-pack mode.")
