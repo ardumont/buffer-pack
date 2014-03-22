@@ -13,7 +13,8 @@
                  dash
                  ace-jump-mode
                  buffer-move
-                 iy-go-to-char))
+                 iy-go-to-char
+                 popwin))
 
 (require 'multiple-cursors)
 (require 'git-gutter)
@@ -28,6 +29,10 @@
 
 ;; go to char
 (require 'iy-go-to-char)
+
+;; use popwin to master the popup buffer and C-g to stop them
+(require 'popwin)
+(popwin-mode 1)
 
 ;; (require 'dired)
 ;; (add-hook 'dired-mode-hook
