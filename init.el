@@ -14,7 +14,8 @@
                  ace-jump-mode
                  buffer-move
                  iy-go-to-char
-                 popwin))
+                 popwin
+                 dockerfile-mode))
 
 (require 'multiple-cursors)
 (require 'git-gutter)
