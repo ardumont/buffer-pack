@@ -4,6 +4,7 @@
 
 ;;; Code:
 
+(require 'install-packages-pack)
 (install-packs '(multiple-cursors
                  move-text
                  auto-complete
@@ -179,4 +180,5 @@
 ;;                                    (define-key minibuffer-local-map (kbd "C-h") 'backward-kill-char)
 ;;                                    (define-key minibuffer-local-map (kbd "C-M-h") 'backward-kill-word)))
 
+(provide 'buffer-pack)
 ;;; buffer-pack.el ends here
