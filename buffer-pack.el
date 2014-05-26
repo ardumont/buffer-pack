@@ -16,8 +16,10 @@
                  buffer-move
                  iy-go-to-char
                  popwin
-                 dockerfile-mode))
+                 dockerfile-mode
+                 markdown-toc))
 
+(require 'markdown-toc)
 (require 'multiple-cursors)
 (require 'git-gutter)
 (require 'auto-complete)
