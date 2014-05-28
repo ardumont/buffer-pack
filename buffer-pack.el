@@ -47,7 +47,7 @@
 (require 'etags)
 
 (defun rotate-windows ()
-  "Rotate your windows"
+  "Rotate your windows."
   (interactive)
   (cond
    ((not (> (count-windows) 1)) (message "You can't rotate a single window!"))
@@ -67,18 +67,23 @@
           (set-window-start w2 s1)
           (setq i (1+ i))))))))
 
+(defun buffer-pack/--goto-line (n)
+  "Internal 'goto-line' to go the line number N."
+  (goto-char (point-min))
+  (forward-line (1- n)))
+
 (defun goto-line-with-feedback ()
-  "Show line numbers temporarily, while prompting for the line number input"
+  "Show line numbers temporarily, while prompting for the line number input."
   (interactive)
   (let ((git-gutter-activated-p git-gutter-mode))
     (unwind-protect
         (progn
-          (if git-gutter-activated-p (git-gutter-mode 0))
+          (when git-gutter-activated-p (git-gutter-mode 0))
           (linum-mode 1)
-          (goto-line (read-number "Goto line: ")))
+          (buffer-pack/--goto-line (read-number "Goto line: ")))
       (progn
         (linum-mode -1)
-        (if git-gutter-activated-p (git-gutter-mode 1))))))
+        (when git-gutter-activated-p (git-gutter-mode 1))))))
 
 ;; Auto refresh buffers (not active by default)
 ;;(global-auto-revert-mode 1)
@@ -129,8 +134,8 @@
     (define-key map (kbd "C-w") 'kill-region)
     (define-key map (kbd "C-y") 'yank)
 
-    (define-key map (kbd "C-v") (lambda () (interactive) (next-line 10)))
-    (define-key map (kbd "M-v") (lambda () (interactive) (previous-line 10)))
+    (define-key map (kbd "C-v") (lambda () (interactive) (forward-line 10)))
+    (define-key map (kbd "M-v") (lambda () (interactive) (forward-line -10)))
 
     (define-key map (kbd "C-c r r") (lambda () (interactive) (revert-buffer nil t)))
 
