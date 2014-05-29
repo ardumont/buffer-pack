@@ -46,6 +46,9 @@
 
 (require 'etags)
 
+;; activate clipboard
+(setq x-select-enable-clipboard t)
+
 (defun rotate-windows ()
   "Rotate your windows."
   (interactive)
