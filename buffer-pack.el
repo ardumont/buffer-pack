@@ -7,7 +7,6 @@
 (require 'install-packages-pack)
 (install-packs '(multiple-cursors
                  move-text
-                 auto-complete
                  git-gutter
                  projectile
                  s
@@ -17,13 +16,14 @@
                  iy-go-to-char
                  popwin
                  dockerfile-mode
-                 markdown-toc))
+                 markdown-toc
+                 company))
 
 (require 'markdown-toc)
 (require 'multiple-cursors)
 (require 'git-gutter)
-(require 'auto-complete)
 (require 'buffer-move)
+(require 'company)
 
 (require 'projectile)
 (projectile-global-mode)
@@ -117,7 +117,7 @@
     (define-key map (kbd "C-c g f") 'iy-go-to-char)
     (define-key map (kbd "C-c g b") 'iy-go-to-char-backward)
 
-    (define-key map (kbd "M-/") 'auto-complete)
+    (define-key map (kbd "M-/") 'company-complete)
     (define-key map (kbd "C-h") 'delete-backward-char)
     (define-key map (kbd "C-M-h") 'backward-kill-word)
     (define-key map (kbd "M-?") 'help-command)
