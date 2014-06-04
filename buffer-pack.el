@@ -24,6 +24,7 @@
 (require 'git-gutter)
 (require 'buffer-move)
 (require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
 
 (require 'projectile)
 (projectile-global-mode)
