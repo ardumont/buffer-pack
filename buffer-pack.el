@@ -168,6 +168,7 @@
     (define-key map (kbd "C-c b u") 'browse-url-at-point)
     (define-key map (kbd "C-c b U") 'browse-url)
 
+    (define-key map (kbd "C-M-SPC") 'er/expand-region)
     map)
   "Keymap for Buffer-pack mode.")
 
