@@ -97,18 +97,18 @@
 (setq auto-revert-verbose nil)
 
 (add-hook 'ido-setup-hook
- (lambda () ;; ~ to go straight home, // to go in /
-   (define-key ido-file-completion-map (kbd "~") (lambda ()
-                                                   (interactive)
-                                                   (if (looking-back "/")
-                                                       (insert "~/")
-                                                       (call-interactively 'self-insert-command))))))
+          (lambda () ;; ~ to go straight home, // to go in /
+            (define-key ido-file-completion-map (kbd "~") (lambda ()
+                                                            (interactive)
+                                                            (if (looking-back "/")
+                                                                (insert "~/")
+                                                              (call-interactively 'self-insert-command))))))
 
 (setq
-  inhibit-splash-screen t ;; Do not show a splash screen.
-   echo-keystrokes 0.1    ;; Show incomplete commands while typing them.
-   visible-bell t         ;; Flash the screen on errors.
-   column-number-mode t)  ;; column number in the modeline
+ inhibit-splash-screen t ;; Do not show a splash screen.
+ echo-keystrokes 0.1    ;; Show incomplete commands while typing them.
+ visible-bell t         ;; Flash the screen on errors.
+ column-number-mode t)  ;; column number in the modeline
 
 (defalias 'yes-or-no-p 'y-or-n-p) ;; "y" resp. "n" instead of "yes" resp. "no".
 
