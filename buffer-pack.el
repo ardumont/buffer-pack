@@ -17,7 +17,8 @@
                  popwin
                  dockerfile-mode
                  markdown-toc
-                 company))
+                 company
+                 ht))
 
 (require 'markdown-toc)
 (require 'multiple-cursors)
@@ -112,6 +113,59 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p) ;; "y" resp. "n" instead of "yes" resp. "no".
 
+;; -----------------------------
+
+(require 'ht) ;; ease hash-table manipulation
+(require 'dash)
+
+(defvar BUFFER-PACK/LAST-BUFFER (ht-create)
+  "Last buffer visited when switching to term.")
+
+(defconst BUFFER-PACK/TERM-BUFFER "buffer-pack-term"
+  "The term buffer's name in which the term buffer is running.")
+
+(defun buffer-pack/term-name (buffer-name)
+  "Compute the BUFFER-NAME's name."
+  (format "*%s*" buffer-name))
+
+(defun buffer-pack/switch-to-process (buffer-name fn)
+  "Switch to process corresponding to buffer BUFFER-NAME.
+If BUFFER-NAME does not exist, then spawn the process with FN and switch to it."
+  (-if-let (buffer-process- (get-buffer-process (buffer-pack/term-name buffer-name)))
+      (let ((buffer (process-buffer buffer-process-)))
+        (if (buffer-live-p buffer)
+            (pop-to-buffer buffer)
+          (funcall fn)))
+    (funcall fn)))
+
+(defun buffer-pack/switch-to-term! ()
+  "Select the term buffer, when possible in an existing window.
+The buffer chosen is based on the file open in the current buffer."
+  (interactive)
+  (let ((current-buf (current-buffer)) ;; current-buffer-name from which we switch to
+        (term-buffer (buffer-pack/switch-to-process BUFFER-PACK/TERM-BUFFER (lambda () (ansi-term "/usr/bin/zsh" buffer-name)))))
+    (ht-set BUFFER-PACK/LAST-BUFFER term-buffer current-buf)))
+
+(defun buffer-pack/switch-to-last-buffer! ()
+  "Switch to the last buffer from whence we come to term."
+  (interactive)
+  (let ((term-buffer (current-buffer)));; this is the term buffer
+    (message "current-buffer '%s' " (buffer-name term-buffer))
+    (-when-let (last-buffer (ht-get BUFFER-PACK/LAST-BUFFER term-buffer))
+      (message "Trying to switch from '%s' to '%s'" (buffer-name term-buffer) last-buffer)
+      (when (buffer-live-p last-buffer)
+        (pop-to-buffer last-buffer)))))
+
+(defun buffer-pack/switch-to-term-or-get-back-to-buffer! ()
+  "If on terminal switch to last buffer from whence we came.
+Otherwise, we go inside a terminal."
+  (interactive)
+  (funcall (if (string= (buffer-pack/term-name BUFFER-PACK/TERM-BUFFER) (buffer-name (current-buffer)));; on buffer
+               'buffer-pack/switch-to-last-buffer!
+             'buffer-pack/switch-to-term!)))
+
+;; -----------------------------
+
 (defvar buffer-pack-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-c j") 'ace-jump-mode)
@@ -167,6 +221,8 @@
 
     (define-key map (kbd "C-c b u") 'browse-url-at-point)
     (define-key map (kbd "C-c b U") 'browse-url)
+
+    (define-key map (kbd "C-c M-z") 'buffer-pack/switch-to-term-or-get-back-to-buffer!)
 
     (define-key map (kbd "C-M-SPC") 'er/expand-region)
     map)
