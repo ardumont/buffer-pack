@@ -48,6 +48,9 @@
 
 (require 'etags)
 
+(require 'whitespace)
+(setq whitespace-line-column 80);; increase this if not happy about 80 columns
+
 ;; activate clipboard
 (setq x-select-enable-clipboard t)
 
