@@ -18,7 +18,8 @@
                  dockerfile-mode
                  markdown-toc
                  company
-                 ht))
+                 ht
+                 nix-mode))
 
 (require 'markdown-toc)
 (require 'multiple-cursors)
