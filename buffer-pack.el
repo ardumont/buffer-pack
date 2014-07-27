@@ -147,7 +147,7 @@ If BUFFER-NAME does not exist, then spawn the process with FN and switch to it."
 The buffer chosen is based on the file open in the current buffer."
   (interactive)
   (let ((current-buf (current-buffer)) ;; current-buffer-name from which we switch to
-        (term-buffer (buffer-pack/switch-to-process BUFFER-PACK/TERM-BUFFER (lambda () (ansi-term "/usr/bin/zsh" buffer-name)))))
+        (term-buffer (buffer-pack/switch-to-process BUFFER-PACK/TERM-BUFFER (lambda () (ansi-term "zsh" buffer-name)))))
     (ht-set BUFFER-PACK/LAST-BUFFER term-buffer current-buf)))
 
 (defun buffer-pack/switch-to-last-buffer! ()
