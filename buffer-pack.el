@@ -20,9 +20,9 @@
                  company
                  ht
                  nix-mode
-                 iedit-mode))
+                 iedit))
 
-(require 'iedit-mode)
+(require 'iedit)
 (require 'markdown-toc)
 (require 'multiple-cursors)
 (require 'git-gutter)
