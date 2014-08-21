@@ -19,8 +19,10 @@
                  markdown-toc
                  company
                  ht
-                 nix-mode))
+                 nix-mode
+                 iedit-mode))
 
+(require 'iedit-mode)
 (require 'markdown-toc)
 (require 'multiple-cursors)
 (require 'git-gutter)
@@ -229,6 +231,7 @@ Otherwise, we go inside a terminal."
     (define-key map (kbd "C-c M-z") 'buffer-pack/switch-to-term-or-get-back-to-buffer!)
 
     (define-key map (kbd "C-M-SPC") 'er/expand-region)
+    (define-key map (kbd "C-c b ;") 'iedit-mode)
     map)
   "Keymap for Buffer-pack mode.")
 
