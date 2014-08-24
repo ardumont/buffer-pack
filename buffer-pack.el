@@ -30,6 +30,14 @@
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 
+;; Extend the default company mode mapping to the one
+(add-hook 'company-mode-hook (lambda ()
+                               (interactive)
+                               (define-key company-active-map (kbd "C-h") 'delete-backward-char)
+                               (define-key company-active-map (kbd "M-?") 'company-show-doc-buffer)
+                               (define-key company-active-map (kbd "C-n") 'company-select-next)
+                               (define-key company-active-map (kbd "C-p") 'company-select-previous)))
+
 (require 'projectile)
 (projectile-global-mode)
 
