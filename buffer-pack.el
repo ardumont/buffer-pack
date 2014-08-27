@@ -133,6 +133,8 @@
 (require 'ht) ;; ease hash-table manipulation
 (require 'dash)
 
+(eval-after-load "dash" '(dash-enable-font-lock))
+
 (defvar BUFFER-PACK/LAST-BUFFER (ht-create)
   "Last buffer visited when switching to term.")
 
@@ -180,6 +182,11 @@ Otherwise, we go inside a terminal."
              'buffer-pack/switch-to-term!)))
 
 ;; -----------------------------
+
+(defun buffer-pack/backward-upcase-word! ()
+  "Backward upper case word."
+  (interactive)
+  (upcase-word -1))
 
 (defvar buffer-pack-mode-map
   (let ((map (make-sparse-keymap)))
