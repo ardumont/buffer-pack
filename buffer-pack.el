@@ -20,7 +20,13 @@
                  company
                  ht
                  nix-mode
-                 iedit))
+                 iedit
+                 switch-window))
+
+(require 'switch-window)
+
+(custom-set-variables
+ '(switch-window-shortcut-style 'qwerty))
 
 (require 'iedit)
 (require 'markdown-toc)
@@ -248,6 +254,8 @@ Otherwise, we go inside a terminal."
 
     (define-key map (kbd "C-M-SPC") 'er/expand-region)
     (define-key map (kbd "C-c b ;") 'iedit-mode)
+    (define-key map (kbd "C-c q")   'switch-window)
+
     map)
   "Keymap for Buffer-pack mode.")
 
