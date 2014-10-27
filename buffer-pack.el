@@ -5,23 +5,23 @@
 ;;; Code:
 
 (require 'install-packages-pack)
-(install-packs '(multiple-cursors
-                 move-text
-                 git-gutter
-                 projectile
-                 s
-                 dash
-                 ace-jump-mode
-                 buffer-move
-                 iy-go-to-char
-                 popwin
-                 dockerfile-mode
-                 markdown-toc
-                 company
-                 ht
-                 nix-mode
-                 iedit
-                 switch-window))
+(install-packages-pack/install-packs '(multiple-cursors
+                                       move-text
+                                       git-gutter
+                                       projectile
+                                       s
+                                       dash
+                                       ace-jump-mode
+                                       buffer-move
+                                       iy-go-to-char
+                                       popwin
+                                       dockerfile-mode
+                                       markdown-toc
+                                       company
+                                       ht
+                                       nix-mode
+                                       iedit
+                                       switch-window))
 
 (require 'switch-window)
 
