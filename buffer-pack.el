@@ -279,5 +279,7 @@ Otherwise, we go inside a terminal."
 ;;                                    (define-key minibuffer-local-map (kbd "C-h") 'backward-kill-char)
 ;;                                    (define-key minibuffer-local-map (kbd "C-M-h") 'backward-kill-word)))
 
+(global-prettify-symbols-mode 1)
+
 (provide 'buffer-pack)
 ;;; buffer-pack.el ends here
