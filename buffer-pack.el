@@ -281,5 +281,7 @@ Otherwise, we go inside a terminal."
 
 (global-prettify-symbols-mode 1)
 
+(setq load-prefer-newer t)
+
 (provide 'buffer-pack)
 ;;; buffer-pack.el ends here
