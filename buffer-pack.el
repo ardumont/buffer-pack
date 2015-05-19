@@ -246,6 +246,7 @@ Otherwise, we go inside a terminal."
     (define-key map (kbd "C-c w ,") 'enlarge-window-horizontally)
     (define-key map (kbd "C-c w /") (lambda () (interactive) (enlarge-window -1)))
     (define-key map (kbd "C-c w '") (lambda () (interactive) (enlarge-window 1)))
+    (define-key map (kbd "C-c w s") 'switch-window)
 
     (define-key map (kbd "C-c b u") 'browse-url-at-point)
     (define-key map (kbd "C-c b U") 'browse-url)
@@ -254,7 +255,6 @@ Otherwise, we go inside a terminal."
 
     (define-key map (kbd "C-M-SPC") 'er/expand-region)
     (define-key map (kbd "C-c b ;") 'iedit-mode)
-    (define-key map (kbd "C-c q")   'switch-window)
 
     map)
   "Keymap for Buffer-pack mode.")
