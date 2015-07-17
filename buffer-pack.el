@@ -196,6 +196,26 @@ Otherwise, we go inside a terminal."
   (interactive)
   (upcase-word -1))
 
+(defun buffer-pack/call-fn-number-at-point (update-fn)
+  "Call UPDATE-FN on number at point."
+  (let ((number (number-at-point))
+        (point (point)))
+    (when number
+      (forward-word)
+      (search-backward (number-to-string number))
+      (replace-match (number-to-string (funcall update-fn number)))
+      (goto-char point))))
+
+(defun buffer-pack/increment-number-at-point ()
+  "Increment number at point."
+  (interactive)
+  (buffer-pack/call-fn-number-at-point #'1+))
+
+(defun buffer-pack/decrement-number-at-point ()
+  "Decrement number at point."
+  (interactive)
+  (buffer-pack/call-fn-number-at-point #'1-))
+
 (defvar buffer-pack-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-c j") 'ace-jump-mode)
@@ -218,6 +238,9 @@ Otherwise, we go inside a terminal."
 
     (define-key map (kbd "C-+") 'text-scale-increase)
     (define-key map (kbd "C--") 'text-scale-decrease)
+
+    (define-key map (kbd "C-c +") 'buffer-pack/increment-number-at-point)
+    (define-key map (kbd "C-c -") 'buffer-pack/decrement-number-at-point)
 
     (define-key map (kbd "C-w") 'kill-region)
     (define-key map (kbd "C-y") 'yank)
