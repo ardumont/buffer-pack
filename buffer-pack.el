@@ -45,6 +45,7 @@
                                (define-key company-active-map (kbd "C-p") 'company-select-previous)
                                (define-key company-active-map (kbd "M-/") 'company-complete)))
 
+(add-to-list auto-mode-alist '("\\.txt$" . markdown-mode))
 
 (require 'projectile)
 (projectile-global-mode)
