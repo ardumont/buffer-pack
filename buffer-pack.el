@@ -23,6 +23,13 @@
                                        iedit
                                        switch-window))
 
+(use-package markdown-mode
+  :config (add-hook 'markdown-mode-hook
+                    (lambda ()
+                      (require 'whitespace)
+                      (whitespace-turn-on)
+                      (custom-set-variables '(whitespace-line-column 80)))))
+
 (require 'switch-window)
 
 (custom-set-variables
