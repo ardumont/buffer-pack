@@ -43,7 +43,8 @@
                                (define-key company-active-map (kbd "M-?") 'company-show-doc-buffer)
                                (define-key company-active-map (kbd "C-n") 'company-select-next)
                                (define-key company-active-map (kbd "C-p") 'company-select-previous)
-                               (define-key company-active-map (kbd "C-/") 'company-complete)))
+                               (define-key company-active-map (kbd "M-/") 'company-complete)))
+
 
 (require 'projectile)
 (projectile-global-mode)
