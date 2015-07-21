@@ -247,9 +247,6 @@ Otherwise, we go inside a terminal."
     (define-key map (kbd "C-+") 'text-scale-increase)
     (define-key map (kbd "C--") 'text-scale-decrease)
 
-    (define-key map (kbd "C-c +") 'buffer-pack/increment-number-at-point)
-    (define-key map (kbd "C-c -") 'buffer-pack/decrement-number-at-point)
-
     (define-key map (kbd "C-w") 'kill-region)
     (define-key map (kbd "C-y") 'yank)
 
@@ -288,6 +285,9 @@ Otherwise, we go inside a terminal."
 
     (define-key map (kbd "C-M-SPC") 'er/expand-region)
     (define-key map (kbd "C-c b ;") 'iedit-mode)
+
+    (define-key map (kbd "C-c b +") 'buffer-pack/increment-number-at-point)
+    (define-key map (kbd "C-c b -") 'buffer-pack/decrement-number-at-point)
 
     map)
   "Keymap for Buffer-pack mode.")
