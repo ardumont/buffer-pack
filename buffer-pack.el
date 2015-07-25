@@ -21,7 +21,20 @@
                                        ht
                                        nix-mode
                                        iedit
-                                       switch-window))
+                                       switch-window
+                                       dash-functional))
+
+(require 'dash-functional)
+
+(use-package tramp)
+
+(defun buffer-pack/tramp-protocols ()
+  "Filter the protocol methods from the tramp methods."
+  (mapcar #'car tramp-methods))
+
+(defun buffer-pack/tramp-method-for-protocol (protocol)
+  "Ddtail PROTOCOL method for tramp."
+  (-filter (-compose (-partial #'string= protocol) #'car) tramp-methods))
 
 (use-package markdown-mode
   :config (add-hook 'markdown-mode-hook
