@@ -24,6 +24,9 @@
                                        switch-window
                                        dash-functional))
 
+(use-package projectile
+  :config (custom-set-variables '(projectile-completion-system 'helm)))
+
 (require 'dash-functional)
 
 (use-package tramp)
