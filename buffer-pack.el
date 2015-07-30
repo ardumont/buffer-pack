@@ -4,30 +4,16 @@
 
 ;;; Code:
 
-(require 'install-packages-pack)
-(install-packages-pack/install-packs '(multiple-cursors
-                                       move-text
-                                       git-gutter
-                                       projectile
-                                       s
-                                       dash
-                                       ace-jump-mode
-                                       buffer-move
-                                       iy-go-to-char
-                                       popwin
-                                       dockerfile-mode
-                                       markdown-toc
-                                       company
-                                       ht
-                                       nix-mode
-                                       iedit
-                                       switch-window
-                                       dash-functional))
+(use-package nix-mode)
+(use-package move-text)
+(use-package dockerfile-mode)
 
 (use-package projectile
-  :config (custom-set-variables '(projectile-completion-system 'helm)))
+  :config
+  (custom-set-variables '(projectile-completion-system 'helm))
+  (projectile-global-mode))
 
-(require 'dash-functional)
+(use-package dash-functional)
 
 (use-package tramp)
 
@@ -46,57 +32,44 @@
                       (whitespace-turn-on)
                       (custom-set-variables '(whitespace-line-column 80)))))
 
-(require 'switch-window)
+(use-package switch-window
+  :config (custom-set-variables
+           '(switch-window-shortcut-style 'qwerty)))
 
-(custom-set-variables
- '(switch-window-shortcut-style 'qwerty))
+(use-package iedit)
+(use-package markdown-toc)
+(use-package multiple-cursors)
+(use-package git-gutter)
+(use-package buffer-move)
 
-(require 'iedit)
-(require 'markdown-toc)
-(require 'multiple-cursors)
-(require 'git-gutter)
-(require 'buffer-move)
-(require 'company)
-(add-hook 'after-init-hook 'global-company-mode)
-
-;; Extend the default company mode mapping to the one
-(add-hook 'company-mode-hook (lambda ()
-                               (interactive)
-                               (define-key company-active-map (kbd "C-h") 'delete-backward-char)
-                               (define-key company-active-map (kbd "M-?") 'company-show-doc-buffer)
-                               (define-key company-active-map (kbd "C-n") 'company-select-next)
-                               (define-key company-active-map (kbd "C-p") 'company-select-previous)
-                               (define-key company-active-map (kbd "M-/") 'company-complete)))
+(use-package company
+  :config (progn
+            (add-hook 'after-init-hook 'global-company-mode)
+            ;; Extend the default company mode mapping to the one
+            (add-hook 'company-mode-hook (lambda ()
+                                           (interactive)
+                                           (define-key company-active-map (kbd "C-h") 'delete-backward-char)
+                                           (define-key company-active-map (kbd "M-?") 'company-show-doc-buffer)
+                                           (define-key company-active-map (kbd "C-n") 'company-select-next)
+                                           (define-key company-active-map (kbd "C-p") 'company-select-previous)
+                                           (define-key company-active-map (kbd "M-/") 'company-complete)))))
 
 (use-package markdown-mode
   :config (add-to-list 'auto-mode-alist '("\\.txt$" . markdown-mode)))
 
-(require 'projectile)
-(projectile-global-mode)
-
-;; Ace jump mode
-(require 'ace-jump-mode)
-
-;; go to char
-(require 'iy-go-to-char)
-
+(use-package ace-jump-mode)
+(use-package iy-go-to-char)
 ;; use popwin to master the popup buffer and C-g to stop them
-(require 'popwin)
-(popwin-mode 1)
+(use-package popwin
+  :config (popwin-mode 1))
 
-;; (require 'dired)
-;; (add-hook 'dired-mode-hook
-;;           (define-key dired-mode-map (kbd "q") (lambda () (interactive) (quit-window t))))
+(use-package s)
+(use-package etags)
 
-(require 's)
-
-(require 'etags)
-
-(require 'whitespace)
-(setq whitespace-line-column 80);; increase this if not happy about 80 columns
-
-;; activate clipboard
-(setq x-select-enable-clipboard t)
+(use-package whitespace
+  :config
+  ;; increase this if not happy about 80 columns
+  (custom-set-variables '(whitespace-line-column 80)))
 
 (defun rotate-windows ()
   "Rotate your windows."
@@ -137,13 +110,6 @@
         (linum-mode -1)
         (when git-gutter-activated-p (git-gutter-mode 1))))))
 
-;; Auto refresh buffers (not active by default)
-;;(global-auto-revert-mode 1)
-
-;; Also auto refresh dired, but be quiet about it
-(setq global-auto-revert-non-file-buffers t)
-(setq auto-revert-verbose nil)
-
 (add-hook 'ido-setup-hook
           (lambda () ;; ~ to go straight home, // to go in /
             (define-key ido-file-completion-map (kbd "~") (lambda ()
@@ -152,20 +118,27 @@
                                                                 (insert "~/")
                                                               (call-interactively 'self-insert-command))))))
 
-(setq
- inhibit-splash-screen t ;; Do not show a splash screen.
- echo-keystrokes 0.1    ;; Show incomplete commands while typing them.
- visible-bell t         ;; Flash the screen on errors.
- column-number-mode t)  ;; column number in the modeline
+;; activate clipboard
+(custom-set-variables '(x-select-enable-clipboard t)
+                      ;; Auto refresh buffers (not active by default)
+                      ;;(global-auto-revert-mode 1)
+                      ;; Also auto refresh dired, but be quiet about it
+                      '(global-auto-revert-non-file-buffers t)
+                      '(auto-revert-verbose nil)
+                      '(inhibit-splash-screen t);; Do not show a splash screen.
+                      '(echo-keystrokes 0.1)    ;; Show incomplete commands while typing them.
+                      '(visible-bell t)         ;; Flash the screen on errors.
+                      '(column-number-mode t)   ;; column number in the modeline
+                      )
 
 (defalias 'yes-or-no-p 'y-or-n-p) ;; "y" resp. "n" instead of "yes" resp. "no".
 
 ;; -----------------------------
 
-(require 'ht) ;; ease hash-table manipulation
-(require 'dash)
+(use-package dash
+  :config (dash-enable-font-lock))
 
-(eval-after-load "dash" '(dash-enable-font-lock))
+(use-package ht)
 
 (defvar BUFFER-PACK/LAST-BUFFER (ht-create)
   "Last buffer visited when switching to term.")
@@ -322,11 +295,6 @@ Otherwise, we go inside a terminal."
   (buffer-pack-mode +1))
 
 (global-buffer-pack-mode)
-
-;; Override some default mapping to the minibuffer
-;; (add-hook 'minibuffer-setup-hook (lambda ()
-;;                                    (define-key minibuffer-local-map (kbd "C-h") 'backward-kill-char)
-;;                                    (define-key minibuffer-local-map (kbd "C-M-h") 'backward-kill-word)))
 
 (global-prettify-symbols-mode 1)
 
