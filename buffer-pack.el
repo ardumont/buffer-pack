@@ -289,7 +289,7 @@ Otherwise, we go inside a terminal."
   "Minor mode to consolidate Emacs' buffer-pack extensions.
 
 \\{buffer-pack-mode-map}"
-  :lighter " BP"
+  :lighter " β"
   :keymap buffer-pack-mode-map)
 
 (define-globalized-minor-mode global-buffer-pack-mode buffer-pack-mode buffer-pack-on)
