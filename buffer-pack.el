@@ -32,10 +32,6 @@
                       (whitespace-turn-on)
                       (custom-set-variables '(whitespace-line-column 80)))))
 
-(use-package switch-window
-  :config (custom-set-variables
-           '(switch-window-shortcut-style 'qwerty)))
-
 (use-package iedit)
 (use-package markdown-toc)
 (use-package multiple-cursors)
@@ -57,7 +53,12 @@
 (use-package markdown-mode
   :config (add-to-list 'auto-mode-alist '("\\.txt$" . markdown-mode)))
 
-(use-package ace-jump-mode)
+(use-package ace-window
+  :config
+  (custom-set-variables '(aw-keys '(?a ?s ?d ?f ?j ?k ?l))
+                        '(aw-background 'grey-out-the-back-during-selection)
+                        '(avy-keys '(?a ?s ?d ?e ?f ?g ?h ?j ?k ?l ?v ?m ?r ?u))))
+
 (use-package iy-go-to-char)
 ;; use popwin to master the popup buffer and C-g to stop them
 (use-package popwin
@@ -215,7 +216,6 @@ Otherwise, we go inside a terminal."
 
 (defvar buffer-pack-mode-map
   (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "C-c j") 'ace-jump-mode)
     (define-key map (kbd "C-c g f") 'iy-go-to-char)
     (define-key map (kbd "C-c g b") 'iy-go-to-char-backward)
 
@@ -265,7 +265,11 @@ Otherwise, we go inside a terminal."
     (define-key map (kbd "C-c w ,") 'enlarge-window-horizontally)
     (define-key map (kbd "C-c w /") (lambda () (interactive) (enlarge-window -1)))
     (define-key map (kbd "C-c w '") (lambda () (interactive) (enlarge-window 1)))
-    (define-key map (kbd "C-c w s") 'switch-window)
+    ;; jump to a window...
+    (define-key map (kbd "C-x C-o") 'ace-window)
+    (define-key map (kbd "C-x o")   'ace-window)
+    ;; or a word
+    (define-key map (kbd "C-c j") 'avy-goto-word-1)
 
     (define-key map (kbd "C-c b u") 'browse-url-at-point)
     (define-key map (kbd "C-c b U") 'browse-url)
