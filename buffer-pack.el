@@ -251,10 +251,6 @@ Otherwise, we go inside a terminal."
     ;; Align your code in a pretty way.
     (define-key map (kbd "C-x \\") 'align-regexp)
 
-    ;; Window switching.
-    (define-key map (kbd "C-x O") (lambda () (interactive) (other-window -1)))  ;; back one
-    (define-key map (kbd "C-x C-o") (lambda () (interactive) (other-window 2))) ;; forward two
-
     ;;window and buffer movement
     (define-key map (kbd "C-c w r") 'rotate-windows)
     (define-key map (kbd "C-c w p") 'buf-move-up)
