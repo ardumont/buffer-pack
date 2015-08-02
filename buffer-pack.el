@@ -352,5 +352,17 @@ Otherwise it will be global."
 (setq save-abbrevs t)
 (setq-default abbrev-mode t)
 
+(use-package isearch-mode
+  :config
+  (add-hook 'isearch-mode-hook
+            (lambda ()
+              (define-key isearch-mode-map (char-to-string help-char) nil) ;; unbind C-h
+              (define-key isearch-mode-map (kbd "C-h") 'isearch-delete-char)
+              (define-key isearch-mode-map (kbd "C-d") 'delete-forward-char)
+              (define-key isearch-mode-map (kbd "M-?") isearch-help-map)
+
+              (define-key minibuffer-local-isearch-map (kbd "C-h") 'isearch-delete-char)
+              (define-key minibuffer-local-isearch-map (kbd "C-d") 'delete-forward-char))))
+
 (provide 'buffer-pack)
 ;;; buffer-pack.el ends here
