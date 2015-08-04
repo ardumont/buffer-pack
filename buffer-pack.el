@@ -324,6 +324,7 @@ Single Capitals as you type."
     (remove-hook 'post-self-insert-hook #'dcaps-to-scaps 'local)))
 
 (add-hook 'text-mode-hook #'dubcaps-mode)
+(add-hook 'text-mode-hook #'smartscan-mode)
 
 ;; fix typos
 
