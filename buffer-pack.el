@@ -121,6 +121,9 @@
 
 ;; activate clipboard
 (custom-set-variables '(x-select-enable-clipboard t)
+                      '(x-select-enable-primary t)
+                      ;; '(x-stretch-cursor t)
+                      ;; '(x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
                       ;; Auto refresh buffers (not active by default)
                       ;;(global-auto-revert-mode 1)
                       ;; Also auto refresh dired, but be quiet about it
