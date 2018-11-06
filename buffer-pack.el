@@ -350,7 +350,6 @@ Otherwise it will be global."
 (setq save-abbrevs t)
 (setq-default abbrev-mode t)
 
-(require 'isearch)
 (add-hook 'isearch-mode-hook
 	  (lambda ()
 	    (define-key isearch-mode-map (char-to-string help-char) nil) ;; unbind C-h
