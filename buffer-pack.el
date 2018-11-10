@@ -6,6 +6,8 @@
 
 (require 'move-text)
 (require 'dockerfile-mode)
+(require 'dash)
+(dash-enable-font-lock)
 (require 'dash-functional)
 (require 'tramp)
 
@@ -18,6 +20,8 @@
   (-filter (-compose (-partial #'string= protocol) #'car) tramp-methods))
 
 (require 'iedit)
+(require 'markdown-mode)
+(add-to-list 'auto-mode-alist '("\\.txt$" . markdown-mode))
 (require 'markdown-toc)
 (require 'multiple-cursors)
 (require 'git-gutter)
@@ -27,32 +31,21 @@
 (add-hook 'after-init-hook 'global-company-mode)
 ;; Extend the default company mode mapping to the one
 (add-hook 'company-mode-hook (lambda ()
-			       (interactive)
-			       (define-key company-active-map (kbd "C-h") 'delete-backward-char)
-			       (define-key company-active-map (kbd "M-?") 'company-show-doc-buffer)
-			       (define-key company-active-map (kbd "C-n") 'company-select-next)
-			       (define-key company-active-map (kbd "C-p") 'company-select-previous)
-			       (define-key company-active-map (kbd "M-/") 'company-complete)))
-
-(require 'markdown-mode)
-(add-to-list 'auto-mode-alist '("\\.txt$" . markdown-mode))
+                               (interactive)
+                               (define-key company-active-map (kbd "C-h") 'delete-backward-char)
+                               (define-key company-active-map (kbd "M-?") 'company-show-doc-buffer)
+                               (define-key company-active-map (kbd "C-n") 'company-select-next)
+                               (define-key company-active-map (kbd "C-p") 'company-select-previous)
+                               (define-key company-active-map (kbd "M-/") 'company-complete)))
 
 (require 'ace-window)
-(custom-set-variables '(aw-keys '(?a ?s ?d ?f ?j ?k ?l))
-		      '(aw-background 'grey-out-the-back-during-selection)
-		      '(avy-keys '(?a ?s ?d ?e ?f ?g ?h ?j ?k ?l ?v ?m ?r ?u)))
-
 (require 'iy-go-to-char)
-;; use popwin to master the popup buffer and C-g to stop them
-(require 'popwin)
+(require 'popwin) ;; master the popup buffer and C-g to stop them
 (popwin-mode 1)
 
 (require 's)
 (require 'etags)
-
 (require 'whitespace)
-;; increase this if not happy about 80 columns
-(custom-set-variables '(whitespace-line-column 79))
 
 (defun rotate-windows ()
   "Rotate your windows."
@@ -85,44 +78,46 @@
   (interactive)
   (let ((git-gutter-activated-p git-gutter-mode))
     (unwind-protect
-	(progn
-	  (when git-gutter-activated-p (git-gutter-mode 0))
-	  (linum-mode 1)
-	  (buffer-pack/--goto-line (read-number "Goto line: ")))
+        (progn
+          (when git-gutter-activated-p (git-gutter-mode 0))
+          (linum-mode 1)
+          (buffer-pack/--goto-line (read-number "Goto line: ")))
       (progn
-	(linum-mode -1)
-	(when git-gutter-activated-p (git-gutter-mode 1))))))
+        (linum-mode -1)
+        (when git-gutter-activated-p (git-gutter-mode 1))))))
 
 (add-hook 'ido-setup-hook
-	  (lambda () ;; ~ to go straight home, // to go in /
-	    (define-key ido-file-completion-map (kbd "~") (lambda ()
-							    (interactive)
-							    (if (looking-back "/")
-								(insert "~/")
-							      (call-interactively 'self-insert-command))))))
+          (lambda () ;; ~ to go straight home, // to go in /
+            (define-key ido-file-completion-map (kbd "~")
+              (lambda ()
+                (interactive)
+                (if (looking-back "/")
+                    (insert "~/")
+                  (call-interactively 'self-insert-command))))))
 
-;; activate clipboard
-(custom-set-variables '(x-select-enable-clipboard t)
-		      '(x-select-enable-primary t)
-		      ;; '(x-stretch-cursor t)
-		      ;; '(x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
-		      ;; Auto refresh buffers (not active by default)
-		      ;;(global-auto-revert-mode 1)
-		      ;; Also auto refresh dired, but be quiet about it
-		      '(global-auto-revert-non-file-buffers t)
-		      '(auto-revert-verbose nil)
-		      '(inhibit-splash-screen t);; Do not show a splash screen.
-		      '(echo-keystrokes 0.1)    ;; Show incomplete commands while typing them.
-		      '(visible-bell t)         ;; Flash the screen on errors.
-		      '(column-number-mode t)   ;; column number in the modeline
-		      )
+(custom-set-variables
+ '(whitespace-line-column 79)
+ '(aw-keys '(?a ?s ?d ?f ?j ?k ?l))
+ '(aw-background 'grey-out-the-back-during-selection)
+ '(avy-keys '(?a ?s ?d ?e ?f ?g ?h ?j ?k ?l ?v ?m ?r ?u))
+ '(make-backup-files nil)  ;; stop creating backup~ files
+ '(auto-save-default nil)  ;; stop creating #autosave# files
+ '(select-enable-clipboard t)
+ '(select-enable-primary t)
+ '(global-auto-revert-mode 1) ;; Auto refresh buffers
+ '(global-auto-revert-non-file-buffers t)  ;; auto refresh dired
+ '(auto-revert-verbose nil) ;; but be quiet about it
+ '(inhibit-splash-screen t) ;; Do not show a splash screen.
+ '(echo-keystrokes 0.1)     ;; Show incomplete commands while typing them.
+ '(visible-bell t)          ;; Flash the screen on errors.
+ '(column-number-mode t)    ;; column number in the modeline
+ '(load-prefer-newer t)     ;; prefer newest file if present
+ '(save-abbrevs 'silently)  ;; save abbreviations silently
+ )
 
 (defalias 'yes-or-no-p 'y-or-n-p) ;; "y" resp. "n" instead of "yes" resp. "no".
 
 ;; -----------------------------
-
-(require 'dash)
-(dash-enable-font-lock)
 
 (require 'ht)
 
@@ -203,40 +198,29 @@ Otherwise, we go inside a terminal."
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-c g f") 'iy-go-to-char)
     (define-key map (kbd "C-c g b") 'iy-go-to-char-backward)
-
     (define-key map (kbd "M-/") 'company-complete)
     (define-key map (kbd "C-h") 'delete-backward-char)
     (define-key map (kbd "C-M-h") 'backward-kill-word)
     (define-key map (kbd "M-?") 'help-command)
-
     ;; multiple-cursors
     (define-key map (kbd "C->") 'mc/mark-next-like-this)
     (define-key map (kbd "C-<") 'mc/mark-previous-like-this)
     (define-key map (kbd "C-c C-<") 'mc/mark-all-like-this)
-
     (define-key map [remap goto-line] 'goto-line-with-feedback)
-
     (define-key map (kbd "C-x C-r") 'rgrep)
-
     (define-key map (kbd "C-+") 'text-scale-increase)
     (define-key map (kbd "C--") 'text-scale-decrease)
-
     (define-key map (kbd "C-w") 'kill-region)
     (define-key map (kbd "C-y") 'yank)
-
     (define-key map (kbd "C-v") (lambda () (interactive) (forward-line 10)))
     (define-key map (kbd "M-v") (lambda () (interactive) (forward-line -10)))
-
     (define-key map (kbd "C-c r r") (lambda () (interactive) (revert-buffer nil t)))
-
-    ;;scroll other window
+    ;; Scroll other window
     (define-key map (kbd "C-M-]") 'scroll-other-window)
     (define-key map (kbd "C-M-[") 'scroll-other-window-down)
-
     ;; Align your code in a pretty way.
     (define-key map (kbd "C-x \\") 'align-regexp)
-
-    ;;window and buffer movement
+    ;; window and buffer movement
     (define-key map (kbd "C-c w r") 'rotate-windows)
     (define-key map (kbd "C-c w p") 'buf-move-up)
     (define-key map (kbd "C-c w n") 'buf-move-down)
@@ -251,18 +235,13 @@ Otherwise, we go inside a terminal."
     (define-key map (kbd "C-x o")   'ace-window)
     ;; or a word
     (define-key map (kbd "C-c j") 'avy-goto-word-1)
-
     (define-key map (kbd "C-c b u") 'browse-url-at-point)
     (define-key map (kbd "C-c b U") 'browse-url)
-
     (define-key map (kbd "C-c M-z") 'buffer-pack/switch-to-term-or-get-back-to-buffer!)
-
     (define-key map (kbd "C-M-SPC") 'er/expand-region)
     (define-key map (kbd "C-c b ;") 'iedit-mode)
-
     (define-key map (kbd "C-c b +") 'buffer-pack/increment-number-at-point)
     (define-key map (kbd "C-c b -") 'buffer-pack/decrement-number-at-point)
-
     map)
   "Keymap for Buffer-pack mode.")
 
@@ -271,7 +250,8 @@ Otherwise, we go inside a terminal."
 
 \\{buffer-pack-mode-map}"
   :lighter " β"
-  :keymap buffer-pack-mode-map)
+  :keymap buffer-pack-mode-map
+  :t global)
 
 (define-globalized-minor-mode global-buffer-pack-mode buffer-pack-mode buffer-pack-on)
 
@@ -279,11 +259,7 @@ Otherwise, we go inside a terminal."
   "Turn on `buffer-pack-mode'."
   (buffer-pack-mode +1))
 
-(global-buffer-pack-mode)
-
 (global-prettify-symbols-mode 1)
-
-(setq load-prefer-newer t)
 
 ;; fix typos
 
@@ -334,9 +310,6 @@ Otherwise it will be global."
       (define-abbrev
 	(if p local-abbrev-table global-abbrev-table)
 	bef aft))))
-
-(setq save-abbrevs t)
-(setq-default abbrev-mode t)
 
 (add-hook 'isearch-mode-hook
 	  (lambda ()
