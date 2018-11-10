@@ -17,13 +17,6 @@
   "Ddtail PROTOCOL method for tramp."
   (-filter (-compose (-partial #'string= protocol) #'car) tramp-methods))
 
-(require 'markdown-mode)
-(add-hook 'markdown-mode-hook
-	  (lambda ()
-	    (require 'whitespace)
-	    (whitespace-turn-on)
-	    (custom-set-variables '(whitespace-line-column 79))))
-
 (require 'iedit)
 (require 'markdown-toc)
 (require 'multiple-cursors)
