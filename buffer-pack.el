@@ -113,6 +113,7 @@
  '(column-number-mode t)    ;; column number in the modeline
  '(load-prefer-newer t)     ;; prefer newest file if present
  '(save-abbrevs 'silently)  ;; save abbreviations silently
+ '(create-lockfiles nil)    ;; stop creating symlink named #something
  )
 
 (defalias 'yes-or-no-p 'y-or-n-p) ;; "y" resp. "n" instead of "yes" resp. "no".
