@@ -6,11 +6,6 @@
 
 (require 'move-text)
 (require 'dockerfile-mode)
-
-(require 'projectile)
-(custom-set-variables '(projectile-completion-system 'helm))
-(projectile-global-mode)
-
 (require 'dash-functional)
 (require 'tramp)
 
