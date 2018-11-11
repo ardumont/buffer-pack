@@ -243,8 +243,10 @@ Otherwise, we go inside a terminal."
 	(define-key map (kbd "C--") 'text-scale-decrease)
 	(define-key map (kbd "C-w") 'kill-region)
 	(define-key map (kbd "C-y") 'yank)
-	(define-key map (kbd "C-v") (lambda () (interactive) (forward-line 10)))
-	(define-key map (kbd "M-v") (lambda () (interactive) (forward-line -10)))
+	(define-key map (kbd "C-v") (lambda () (interactive)
+				      (forward-line 10)))
+	(define-key map (kbd "M-v") (lambda () (interactive)
+				      (forward-line -10)))
 	(define-key map (kbd "C-c r r") (lambda ()
 					  (interactive) (revert-buffer nil t)))
 	;; Scroll other window
