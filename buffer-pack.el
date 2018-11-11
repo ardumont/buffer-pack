@@ -1,6 +1,6 @@
 ;;; buffer-pack.el --- Buffer manipulation
 
-;; Copyright (C) 2018  Antoine R. Dumont (@ardumont)
+;; Copyright (C) 2013-2018  Antoine R. Dumont (@ardumont)
 ;; Author: Antoine R. Dumont (@ardumont) <antoine.romain.dumont@gmail.com>
 ;; Keywords:
 
