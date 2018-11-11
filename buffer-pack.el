@@ -65,6 +65,8 @@
 (require 's)
 (require 'etags)
 (require 'whitespace)
+(global-whitespace-mode 1)
+
 
 (defun rotate-windows ()
   "Rotate your windows."
@@ -116,6 +118,7 @@
 
 (custom-set-variables
  '(whitespace-line-column 79)
+ '(whitespace-style '(face tabs empty trailing lines-tail))
  '(aw-keys '(?a ?s ?d ?f ?j ?k ?l))
  '(aw-background 'grey-out-the-back-during-selection)
  '(avy-keys '(?a ?s ?d ?e ?f ?g ?h ?j ?k ?l ?v ?m ?r ?u))
