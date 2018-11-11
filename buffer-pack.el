@@ -49,13 +49,14 @@
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 ;; Extend the default company mode mapping to the one
-(add-hook 'company-mode-hook (lambda ()
-                               (interactive)
-                               (define-key company-active-map (kbd "C-h") 'delete-backward-char)
-                               (define-key company-active-map (kbd "M-?") 'company-show-doc-buffer)
-                               (define-key company-active-map (kbd "C-n") 'company-select-next)
-                               (define-key company-active-map (kbd "C-p") 'company-select-previous)
-                               (define-key company-active-map (kbd "M-/") 'company-complete)))
+(add-hook 'company-mode-hook
+	  (lambda ()
+	    (interactive)
+	    (define-key company-active-map (kbd "C-h") 'delete-backward-char)
+	    (define-key company-active-map (kbd "M-?") 'company-show-doc-buffer)
+	    (define-key company-active-map (kbd "C-n") 'company-select-next)
+	    (define-key company-active-map (kbd "C-p") 'company-select-previous)
+	    (define-key company-active-map (kbd "M-/") 'company-complete)))
 
 (require 'ace-window)
 (require 'iy-go-to-char)
@@ -157,7 +158,8 @@
 (defun buffer-pack/switch-to-process (buffer-name fn)
   "Switch to process corresponding to buffer BUFFER-NAME.
 If BUFFER-NAME does not exist, then spawn the process with FN and switch to it."
-  (-if-let (buffer-process- (get-buffer-process (buffer-pack/term-name buffer-name)))
+  (-if-let (buffer-process- (get-buffer-process
+			     (buffer-pack/term-name buffer-name)))
       (let ((buffer (process-buffer buffer-process-)))
 	(if (buffer-live-p buffer)
 	    (pop-to-buffer buffer)
@@ -168,8 +170,10 @@ If BUFFER-NAME does not exist, then spawn the process with FN and switch to it."
   "Select the term buffer, when possible in an existing window.
 The buffer chosen is based on the file open in the current buffer."
   (interactive)
-  (let ((current-buf (current-buffer)) ;; current-buffer-name from which we switch to
-	(term-buffer (buffer-pack/switch-to-process BUFFER-PACK/TERM-BUFFER (lambda () (ansi-term "zsh" buffer-name)))))
+  (let ((current-buf (current-buffer)) ;; buffer's name from which we switch to
+	(term-buffer (buffer-pack/switch-to-process
+		      BUFFER-PACK/TERM-BUFFER
+		      (lambda () (ansi-term "zsh" buffer-name)))))
     (ht-set BUFFER-PACK/LAST-BUFFER term-buffer current-buf)))
 
 (defun buffer-pack/switch-to-last-buffer! ()
@@ -178,7 +182,8 @@ The buffer chosen is based on the file open in the current buffer."
   (let ((term-buffer (current-buffer)));; this is the term buffer
     (message "current-buffer '%s' " (buffer-name term-buffer))
     (-when-let (last-buffer (ht-get BUFFER-PACK/LAST-BUFFER term-buffer))
-      (message "Trying to switch from '%s' to '%s'" (buffer-name term-buffer) last-buffer)
+      (message "Trying to switch from '%s' to '%s'"
+	       (buffer-name term-buffer) last-buffer)
       (when (buffer-live-p last-buffer)
 	(pop-to-buffer last-buffer)))))
 
@@ -186,7 +191,8 @@ The buffer chosen is based on the file open in the current buffer."
   "If on terminal switch to last buffer from whence we came.
 Otherwise, we go inside a terminal."
   (interactive)
-  (funcall (if (string= (buffer-pack/term-name BUFFER-PACK/TERM-BUFFER) (buffer-name (current-buffer)));; on buffer
+  (funcall (if (string= (buffer-pack/term-name BUFFER-PACK/TERM-BUFFER)
+			(buffer-name (current-buffer)));; on buffer
 	       'buffer-pack/switch-to-last-buffer!
 	     'buffer-pack/switch-to-term!)))
 
@@ -237,7 +243,8 @@ Otherwise, we go inside a terminal."
     (define-key map (kbd "C-y") 'yank)
     (define-key map (kbd "C-v") (lambda () (interactive) (forward-line 10)))
     (define-key map (kbd "M-v") (lambda () (interactive) (forward-line -10)))
-    (define-key map (kbd "C-c r r") (lambda () (interactive) (revert-buffer nil t)))
+    (define-key map (kbd "C-c r r") (lambda ()
+				      (interactive) (revert-buffer nil t)))
     ;; Scroll other window
     (define-key map (kbd "C-M-]") 'scroll-other-window)
     (define-key map (kbd "C-M-[") 'scroll-other-window-down)
@@ -251,8 +258,10 @@ Otherwise, we go inside a terminal."
     (define-key map (kbd "C-c w f") 'buf-move-right)
     (define-key map (kbd "C-c w .") 'shrink-window-horizontally)
     (define-key map (kbd "C-c w ,") 'enlarge-window-horizontally)
-    (define-key map (kbd "C-c w /") (lambda () (interactive) (enlarge-window -1)))
-    (define-key map (kbd "C-c w '") (lambda () (interactive) (enlarge-window 1)))
+    (define-key map (kbd "C-c w /") (lambda ()
+				      (interactive) (enlarge-window -1)))
+    (define-key map (kbd "C-c w '") (lambda ()
+				      (interactive) (enlarge-window 1)))
     ;; jump to a window...
     (define-key map (kbd "C-x C-o") 'ace-window)
     (define-key map (kbd "C-x o")   'ace-window)
@@ -260,7 +269,8 @@ Otherwise, we go inside a terminal."
     (define-key map (kbd "C-c j") 'avy-goto-word-1)
     (define-key map (kbd "C-c b u") 'browse-url-at-point)
     (define-key map (kbd "C-c b U") 'browse-url)
-    (define-key map (kbd "C-c M-z") 'buffer-pack/switch-to-term-or-get-back-to-buffer!)
+    (define-key map (kbd "C-c M-z")
+      'buffer-pack/switch-to-term-or-get-back-to-buffer!)
     (define-key map (kbd "C-M-SPC") 'er/expand-region)
     (define-key map (kbd "C-c b ;") 'iedit-mode)
     (define-key map (kbd "C-c b +") 'buffer-pack/increment-number-at-point)
@@ -276,7 +286,8 @@ Otherwise, we go inside a terminal."
   :keymap buffer-pack-mode-map
   :t global)
 
-(define-globalized-minor-mode global-buffer-pack-mode buffer-pack-mode buffer-pack-on)
+(define-globalized-minor-mode
+  global-buffer-pack-mode buffer-pack-mode buffer-pack-on)
 
 (defun buffer-pack-on ()
   "Turn on `buffer-pack-mode'."
@@ -335,13 +346,16 @@ Otherwise it will be global."
 
 (add-hook 'isearch-mode-hook
 	  (lambda ()
-	    (define-key isearch-mode-map (char-to-string help-char) nil) ;; unbind C-h
+	    ;; unbind C-h
+	    (define-key isearch-mode-map (char-to-string help-char) nil)
 	    (define-key isearch-mode-map (kbd "C-h") 'isearch-delete-char)
 	    (define-key isearch-mode-map (kbd "C-d") 'delete-forward-char)
 	    (define-key isearch-mode-map (kbd "M-?") isearch-help-map)
 
-	    (define-key minibuffer-local-isearch-map (kbd "C-h") 'isearch-delete-char)
-	    (define-key minibuffer-local-isearch-map (kbd "C-d") 'delete-forward-char)))
+	    (define-key minibuffer-local-isearch-map (kbd "C-h")
+	      'isearch-delete-char)
+	    (define-key minibuffer-local-isearch-map (kbd "C-d")
+	      'delete-forward-char)))
 
 (provide 'buffer-pack)
 ;;; buffer-pack.el ends here
