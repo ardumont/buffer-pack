@@ -42,6 +42,12 @@
 (require 'markdown-mode)
 (add-to-list 'auto-mode-alist '("\\.txt$" . markdown-mode))
 (require 'markdown-toc)
+(require 'yaml-mode)
+
+(add-hook 'yaml-mode-hook
+	  (lambda ()
+	    (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
+
 (require 'multiple-cursors)
 (require 'git-gutter)
 (require 'buffer-move)
