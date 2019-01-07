@@ -233,8 +233,6 @@ Otherwise, we go inside a terminal."
   "Keymap for Buffer-pack mode.")
 (setq buffer-pack-mode-map
       (let ((map (make-sparse-keymap)))
-	(define-key map (kbd "C-c g f") 'iy-go-to-char)
-	(define-key map (kbd "C-c g b") 'iy-go-to-char-backward)
 	(define-key map (kbd "M-/") 'company-complete)
 	(define-key map (kbd "C-h") 'delete-backward-char)
 	(define-key map (kbd "C-M-h") 'backward-kill-word)
